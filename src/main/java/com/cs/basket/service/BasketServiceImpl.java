@@ -28,9 +28,9 @@ public class BasketServiceImpl implements BasketService {
         //to encapsulate it into a separate service.
         List<Offer> offers = orderService.getOffers(order);
 
-        for(Offer offer : offers) {
-            order.addDiscount(offer.calculateDiscount(order));
-        }
+        offers.stream().forEach(offer ->
+                order.addDiscount(offer.calculateDiscount(order))
+        );
 
         return order.getTotalPriceInPence();
     }
