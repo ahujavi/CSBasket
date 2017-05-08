@@ -22,4 +22,11 @@ public interface OrderService {
      * @return the list of offers applicable to the order.
      */
     List<Offer> getOffers(Order order);
+
+    /**
+     * @param order the order for which to calculate the discount
+     * @param offers the discount is calculated on the basis of the offers.
+     * @return the discount for the order based on the supplied offers.
+     */
+    long calculateDiscount(Order order, List<Offer> offers);
 }
