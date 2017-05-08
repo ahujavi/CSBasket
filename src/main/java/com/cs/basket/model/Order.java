@@ -13,11 +13,6 @@ import static java.lang.String.format;
 public class Order {
 
     /**
-     * total discount recorded against this order
-     */
-    private long totalDiscountInPence = 0;
-
-    /**
      * total original price for all the items in this order (this is the original price excluding any discounts)
      */
     private final long totalOriginalPriceInPence;
@@ -41,14 +36,6 @@ public class Order {
         this.totalOriginalPriceInPence = totalOriginalPriceInPence;
     }
 
-    public void addDiscount(long discountInPence) {
-        this.totalDiscountInPence += discountInPence;
-    }
-
-    public long getTotalPriceInPence() {
-        return totalOriginalPriceInPence - totalDiscountInPence;
-    }
-
     public long getItemQuantity(Item item) {
         return this.items.containsKey(item) ? this.items.get(item) : 0;
     }
@@ -59,10 +46,6 @@ public class Order {
 
     public long getTotalOriginalPriceInPence() {
         return totalOriginalPriceInPence;
-    }
-
-    public long getTotalDiscountInPence() {
-        return totalDiscountInPence;
     }
 
     /**
