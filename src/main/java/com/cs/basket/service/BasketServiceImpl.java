@@ -28,10 +28,8 @@ public class BasketServiceImpl implements BasketService {
         //to encapsulate it into a separate service.
         List<Offer> offers = orderService.getOffers(order);
 
-        offers.stream().forEach(offer ->
-                order.addDiscount(offer.calculateDiscount(order))
-        );
+        long discount = orderService.calculateDiscount(order, offers);
 
-        return order.getTotalPriceInPence();
+        return order.getTotalOriginalPriceInPence() - discount;
     }
 }
