@@ -50,8 +50,6 @@ public class OrderServiceTest {
 
         //then
         assertThat(order.getTotalOriginalPriceInPence(), equalTo(0L));
-        assertThat(order.getTotalDiscountInPence(), equalTo(0L));
-        assertThat(order.getTotalPriceInPence(), equalTo(0L));
         assertThat(order.getItems(), equalTo(ImmutableMap.<Item, Integer>of()));
 
         //when
@@ -59,8 +57,6 @@ public class OrderServiceTest {
 
         //then
         assertThat(order.getTotalOriginalPriceInPence(), equalTo(0L));
-        assertThat(order.getTotalDiscountInPence(), equalTo(0L));
-        assertThat(order.getTotalPriceInPence(), equalTo(0L));
         assertThat(order.getItems(), equalTo(ImmutableMap.<Item, Integer>of()));
     }
 
@@ -71,8 +67,6 @@ public class OrderServiceTest {
 
         //then
         assertThat(order.getTotalOriginalPriceInPence(), equalTo(120L));
-        assertThat(order.getTotalDiscountInPence(), equalTo(0L));
-        assertThat(order.getTotalPriceInPence(), equalTo(120L));
 
         ImmutableMap<Item, Long> actualItems = order.getItems();
         assertThat(actualItems, notNullValue());
