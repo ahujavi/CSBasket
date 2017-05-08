@@ -46,13 +46,14 @@ public class OrderServiceImpl implements OrderService {
         long totalOriginalPrice = mapOfItems.entrySet().stream().mapToLong(
                 item -> item.getKey().getPriceInPence() * item.getValue()).sum();
 
-
         return new Order(mapOfItems, totalOriginalPrice);
     }
 
     /**
      * NOTE - For now, I have assumed that "all" offers will be pre-loaded. However, this method gives us the
-     * opportunity to load offers dynamically (e.g. from a RDBMS)
+     * opportunity to
+     * A) load offers dynamically (e.g. from a RDBMS)
+     * B) return only those offers which apply to the order
      *
      * @param order identifies the order.
      * @return the list of offers applicable to the order.
@@ -60,6 +61,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Offer> getOffers(final Order order) {
         return offers.stream().filter(offer -> offer.appliesTo(order)).collect(Collectors.toList());
+    }
+
+    @Override
+    public long calculateDiscount(Order order, List<Offer> offers) {
+        return offers.stream().mapToLong(offer -> offer.calculateDiscount(order)).sum();
     }
 
 }
