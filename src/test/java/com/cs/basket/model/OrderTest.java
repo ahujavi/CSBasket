@@ -17,23 +17,9 @@ public class OrderTest {
 
     @Test
     public void testGetTotalDiscountForAnOrderWithDiscount() throws Exception {
-        //given
-        Order order = new Order(new HashMap<Item, Long>(), 200);
-
-        //when
-        order.addDiscount(20);
-        order.addDiscount(10);
-
-        //then
-        assertThat(order.getTotalDiscountInPence(), equalTo(30L));
     }
 
     @Test
     public void testGetTotalDiscountForAnOrderWithoutDiscount() throws Exception {
-        //given
-        Order order = new Order(new HashMap<Item, Long>(), 200);
-
-        //then
-        assertThat(order.getTotalDiscountInPence(), equalTo(0L));
     }
 }
